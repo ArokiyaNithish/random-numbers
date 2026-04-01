@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Random Number</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+
+<h2>Live Random Number Dashboard</h2>
+<h1 id="number">Waiting...</h1>
+
+<script>
+var socket = io();
+
+socket.on('connect', function() {
+    console.log("Connected to server");
+});
+
+socket.on('new_number', function(data) {
+    console.log("Received:", data.number);
+    document.getElementById("number").innerText = data.number;
+});
+</script>
+
+</body>
+</html>
